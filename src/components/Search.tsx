@@ -1,12 +1,13 @@
 import { StyleSheet, TextInput, View } from 'react-native'
 import { useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons'
+import { elevation } from '../common/styles'
 
 interface SearchProps {
-    setTerm: string
+    setTerm: (term: string) => void
 }
 
-const Search = ({ setTerm }) => {
+const Search = ({ setTerm }: SearchProps) => {
 
     const [input, setInput] = useState('')
 
@@ -16,9 +17,11 @@ const Search = ({ setTerm }) => {
     }
 
     return (
-        <View>
+        <View style={[styles.container, styles.elevation]}>
+            <FontAwesome name='search' size={25} />
             <TextInput
-                placeholder='Search for food or restaurants'
+                style={styles.input}
+                placeholder='Food and restaurants'
                 onChangeText={(text) => setInput(text)}
                 onEndEditing={handleEndEditing}
             />
@@ -28,4 +31,19 @@ const Search = ({ setTerm }) => {
 
 export default Search
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    elevation,
+    container: {
+        flexDirection: 'row',
+        marginTop: 5,
+        marginHorizontal: 25,
+        backgroundColor: 'white',
+        padding: 15,
+        borderRadius: 40
+    },
+    input: {
+        fontSize: 18,
+        marginLeft: 10
+    }
+
+})

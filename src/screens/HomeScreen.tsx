@@ -1,4 +1,4 @@
-import { View, StyleSheet, StatusBar } from 'react-native'
+import { View, StyleSheet, StatusBar, ImageSourcePropType } from 'react-native'
 import { useState } from 'react'
 import Header from '../components/Header'
 import Search from '../components/Search'
@@ -7,7 +7,7 @@ import Restaurants from '../components/Restaurants'
 
 interface Category {
     name: string
-    imageUrl: number
+    imageUrl: ImageSourcePropType
 }
 
 const commonCategories: Category[] = [
@@ -37,15 +37,20 @@ const commonCategories: Category[] = [
     },
 ]
 
-const HomeScreen: React.FC = () => {
+const HomeScreen = () => {
 
     const [term, setTerm] = useState<string>("Burger")
     return (
         <View>
             <Header />
             <Search setTerm={setTerm} />
-            <Categories />
+            <Categories
+                commonCategories={commonCategories}
+                setTerm={setTerm}
+                term={term}
+            />
             <Restaurants />
+            <StatusBar />
 
         </View>
     )
