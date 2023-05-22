@@ -49,7 +49,7 @@ const HomeScreen = () => {
                 setTerm={setTerm}
                 term={term}
             />
-            <Restaurants />
+            <Restaurants term={term} />
             <StatusBar />
 
         </View>

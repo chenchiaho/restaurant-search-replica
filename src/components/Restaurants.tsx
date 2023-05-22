@@ -1,7 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import useRestaurants from '../hooks/useRestaurants'
 
-const Restaurants = () => {
+interface RestaurantsProps {
+    term: string
+}
+
+const Restaurants = ({ term }: RestaurantsProps) => {
+
+    const [{ data, loading, error }, searchRestaurants] = useRestaurants()
+
+    useEffect(() => {
+        searchRestaurants(term)
+    }, [term])
+
     return (
         <View>
             <Text>Restaurants</Text>
