@@ -4,7 +4,6 @@ import { elevation } from '../common/styles'
 interface CategoryItemProps {
     name: string
     imageUrl: ImageSourcePropType
-    // imageUrl: string
     index: number
     active: boolean
     handlePress: () => void
