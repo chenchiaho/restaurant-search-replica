@@ -1,5 +1,5 @@
 import { View, StyleSheet, StatusBar } from 'react-native'
-import React from 'react'
+import { useState } from 'react'
 import Header from '../components/Header'
 import Search from '../components/Search'
 import Categories from '../components/Categories'
@@ -37,11 +37,13 @@ const commonCategories: Category[] = [
     },
 ]
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
+
+    const [term, setTerm] = useState<string>("Burger")
     return (
         <View>
             <Header />
-            <Search />
+            <Search setTerm={setTerm} />
             <Categories />
             <Restaurants />
 
