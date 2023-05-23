@@ -7,7 +7,7 @@ interface ResultState {
   error: string | null
 }
 
-type searchRestaurantsFn = (term: string) => Promise<void>
+type SearchRestaurantsFn = (term: string) => Promise<void>
 
 const useRestaurants = () => {
 
@@ -17,7 +17,7 @@ const useRestaurants = () => {
     error: null,
   })
 
-  const searchRestaurants: searchRestaurantsFn = async (term) => {
+  const searchRestaurants: SearchRestaurantsFn = async (term) => {
     setResults({
       data: null,
       loading: true,
