@@ -2,14 +2,16 @@ import { useState } from "react"
 import yelp from "../api/yelp"
 
 interface ResultState {
-    data: any[] | null
+    data: {
+        photos: string[]
+    } | null
     loading: boolean
     error: string | null
 }
 
 type SearchRestaurantFn = (id: string) => Promise<void>
 
-const useRestaurant = () => {
+const useRestaurant = (): [ResultState, SearchRestaurantFn] => {
 
     const [result, setResult] = useState<ResultState>({
         data: null,

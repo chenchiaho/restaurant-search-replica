@@ -2,14 +2,16 @@ import { ActivityIndicator, StyleSheet, Text, View, FlatList } from 'react-nativ
 import React, { useEffect } from 'react'
 import useRestaurants from '../hooks/useRestaurants'
 import RestaurantItem from './RestaurantItem'
+import { useNavigation, NavigationProp } from '@react-navigation/native'
 
 interface RestaurantsProps {
     term: string
 }
 
 const Restaurants = ({ term }: RestaurantsProps) => {
-
-    const [{ data, loading, error }, searchRestaurants] = useRestaurants()
+    const navigation = useNavigation<NavigationProp<any>>()
+    const [results, searchRestaurants] = useRestaurants()
+    const { data, loading, error } = results
 
     useEffect(() => {
         searchRestaurants(term)
@@ -24,12 +26,15 @@ const Restaurants = ({ term }: RestaurantsProps) => {
         )
     }
     return (
-        <View >
-            <Text >Top Restaurants</Text>
+        <View style={styles.container}>
+            <Text style={styles.header}>Top Restaurants</Text>
             <FlatList
                 data={data}
                 keyExtractor={(restaurant) => restaurant.id}
-                renderItem={({ item }) => <RestaurantItem restaurant={item} />}
+                renderItem={({ item }) =>
+                    <RestaurantItem restaurant={item}
+                        navigation={navigation}
+                    />}
             />
         </View>
     )
@@ -37,4 +42,14 @@ const Restaurants = ({ term }: RestaurantsProps) => {
 
 export default Restaurants
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        marginHorizontal: 25,
+        marginVertical: 15
+    },
+    header: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginBottom: 10
+    }
+})

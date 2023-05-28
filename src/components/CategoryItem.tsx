@@ -40,8 +40,8 @@ export default CategoryItem
 const styles = StyleSheet.create({
     elevation,
     image: {
-        // width: 35,
-        // height: 35
+        width: 35,
+        height: 35
     },
     container: {
         width: 70,

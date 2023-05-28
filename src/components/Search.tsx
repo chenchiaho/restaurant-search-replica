@@ -9,7 +9,7 @@ interface SearchProps {
 
 const Search = ({ setTerm }: SearchProps) => {
 
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState<string>('')
 
     const handleEndEditing = () => {
         if (!input) return

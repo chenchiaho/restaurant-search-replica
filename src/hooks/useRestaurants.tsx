@@ -9,7 +9,7 @@ interface ResultState {
 
 type SearchRestaurantsFn = (term: string) => Promise<void>
 
-const useRestaurants = () => {
+const useRestaurants = (): [ResultState, SearchRestaurantsFn] => {
 
   const [results, setResults] = useState<ResultState>({
     data: null,
